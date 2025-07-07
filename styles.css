@@ -1,0 +1,137 @@
+font {
+  font-family: Verdana, Helvetica;
+  color: #cccccc;
+}
+
+body {
+  font-family: Helvetica, Tahoma;
+  color: #e0e0e0;
+  font-size: 11px;
+  background-color: #121212;
+}
+
+td {
+  font-family: Helvetica, Tahoma;
+  color: #e0e0e0;
+  font-size: 11px;
+  background-color: #1e1e1e;
+  border: inset 1px #444;
+}
+
+a {
+  font-family: Helvetica, Tahoma;
+  color: #66ccff;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+a:hover {
+  font-family: Helvetica, Tahoma;
+  color: #ffffff;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.navhead {
+  display: block;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: 1px solid #333;
+  background-color: #222;
+  color: #f0f0f0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.contenthead {
+  display: block;
+  padding-left: 4px;
+  padding-right: 4px;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left;
+}
+
+ul#tabs {
+  list-style-type: none;
+  margin: 30px 0 0 0;
+  padding: 0 0 0.3em 0;
+  float: left;
+}
+
+ul#tabs li a {
+  color: #eeeeee;
+  background-color: #2a2a2a;
+  padding: 0.3em;
+  text-decoration: none;
+}
+
+ul#tabs li a:hover {
+  background-color: #444444;
+}
+
+ul#tabs li a.selected {
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.7em 0.3em 0.38em 0.3em;
+}
+
+div.tabContent {
+  width: 600px;
+  padding: 0.5em;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
+
+div.tabContent.hide {
+  display: none;
+}
+
+.xstooltip {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  font: normal 8pt sans-serif;
+  padding: 6px;
+  border: solid 1px #666;
+  background-color: #2e2e2e;
+  color: #ffffff;
+  width: 250px;
+}
+
+.xstooltip2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  font: normal 8pt sans-serif;
+  padding: 6px;
+  border: solid 1px #666;
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+
+.invisbox {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+
+.skillcap {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+#mainContent {
+  text-align: center;
+  margin: 0;
+  border: solid 1px #333;
+  background-color: #1a1a1a;
+}
+
+.center {
+  text-align: center;
+}

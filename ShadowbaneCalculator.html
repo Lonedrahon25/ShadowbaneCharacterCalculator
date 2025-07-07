@@ -1,0 +1,2237 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shadowbane Calculator</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="Character creator for Shadowbane character planning. Plan powers, traits, discipline runes, skills and more. Export feature available." />
+
+<style>
+  body {
+    background-color:#121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+  }
+
+  table {
+    background-color: #1e1e1e;
+    border-color: #444;
+  }
+
+  td, th {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+  }
+
+  input, select, textarea {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+  }
+
+  button {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #555;
+    padding: 4px 8px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #444444;
+    color: #ff6666;
+    cursor: pointer;
+  }
+
+  .contenthead {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  a {
+    color: #66ccff;
+  }
+
+  .xstooltip, .xstooltip2 {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 5px;
+  }
+</style>
+
+</head>
+<body style="background-color: #121212; color: #e0e0e0;" onload="init();hide_div();document.getElementById('powers_div').style.visibility = 'hidden';" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<script type="text/javascript" src="dbdata.js.php"></script>
+<script type="text/javascript" src="calc.js.php"></script>
+<center>
+<table>
+	<tr>
+		<td valign="top" colspan="6" width="567">
+		
+            <!-- Content Starts Here! -->
+		    <div class="contenthead"><img src="hurlbatlogohd.png" style="vertical-align:middle; height:17px;"> Shadowbane Character Calculator <img src="hurlbatlogohd.png" style="vertical-align:middle; height:17px;"></div>
+
+<div id="powers_div" class="xstooltip2">
+	<select size=9 style="width:220px;" id="powerSelect">
+		
+	</select><BR>
+	<center><button type="button" onclick="powerSelectInit()">Back</button> | <button onclick="xstooltip_hide('powers_div');" type="button">Close</button></center>
+</div>
+
+<div id="enhanced_div"  class="xstooltip">
+<b>Enhanced Stat Runes<br/></b>
+<br/>
+Statistical Point Cost: 3<br/>
+Required Points (of chosen stat): 85<br/>
+Granted: 2 Base/ 5 Max (both of chosen stat)
+</div>
+<div id="exceptional_div"  class="xstooltip">
+<b>Exceptional Stat Runes<br/></b>
+<br/>
+Statistical Point Cost: 4<br/>
+Required Points (of chosen stat): 90<br/>
+Granted: 3 Base/ 10 Max (both of chosen stat)
+</div>
+<div id="amazing_div"  class="xstooltip">
+<b>Amazing Stat Runes<br/></b>
+<br/>
+Statistical Point Cost: 5<br/>
+Required Points (of chosen stat): 95<br>
+Granted: 4 Base/ 15 Max (both of chosen stat)
+</div>
+<div id="incredible_div"  class="xstooltip">
+<b>Incredible Stat Runes<br/></b>
+<br/>
+Statistical Point Cost: 8<br/>
+Required Points (of chosen stat): 100<br/>
+Granted: 5 Base/ 20 Max (both of chosen stat)
+</div>
+<div id="great_div"  class="xstooltip">
+<b>Great Stat Runes<br/></b>
+<br/>
+Statistical Point Cost: 9<br/>
+Required Points (of chosen stat): 105<br/>
+Granted: 6 Base/ 25 Max (both of chosen stat)
+</div>
+<div id="heroic_div"  class="xstooltip">
+<b>Heroic Stat Runes<br/></b>
+<br/>
+Statistical Point Cost: 11<br/>
+Required Points (of chosen stat): 110<br/>
+Granted: 7 Base/ 30 Max (both of chosen stat)
+</div>
+<div id="legendary_div"  class="xstooltip">
+<b>Lengedary Stat Runes<br/></b>
+<br/>
+Statistical Point Cost: 12<br/>
+Required Points (of chosen stat): 115<br/>
+Granted: 8 Base/ 35 Max (both of chosen stat)
+</div>
+<div id="ofthegods_div"  class="xstooltip">
+<b>Stat Runes of the Gods</b><br/>
+<br/>
+Statistical Point Cost: 15<br/>
+Required Points (of chosen stat): 120<br/>
+Granted: 10 Base/ 40 Max (both of chosen stat)
+</div>
+
+<div id="agile_div" class="xstooltip"><b>
+Agile</b><br/>
+<P><I>You're slight of frame, and excel
+in tasks that involve coordination and deftness. Due to your build,
+you may not be as strong as others, but you're certainly more
+coordinated and agile.</I> <BR><B>Creation Cost:</B> 6 
+</P>
+<P><BR><B>Rune Category:</B> Dexterity <BR><B>Requires Dexterity of:</B>
+40 <BR><B>Granted:</B> 5 Base Dexterity/ 5 Max Dexterity</P>
+</div>
+
+<div id="ambidexterity_div" class="xstooltip"><b>
+Ambidexterity</b><br/>
+<p><I>I'm not left-handed either! You
+can use either hand with equal facility, whether writing, switching
+hands mid-combat, or using two weapons at once to overcome a foe.</I>
+<B>Creation Cost:</B> 12</P>
+<P><B>Requires Dexterity of:</B> 50<BR><B>Required Class: </B>Fighter
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>This entity can wield weapons in both hands. 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="blacksmithsapprentice_div" class="xstooltip"><b>
+Blacksmith's Apprentice</b><br/>
+<P><I>An apprenticeship at the forge
+hammering and working metal with a master blacksmith made you
+stronger than most, though a bit slower of hand and wit.</I> <B>Creation
+Cost:</B> 8</P>
+<P><B>Rune Category:</B> Apprentice<BR><B>Requires Strength of:</B>
+40<BR><B>Granted:</B> 10 Base Strength/ 10 Max Strength<BR><B>Granted:</B>
+-5 Base Dexterity/ -5 Max Dexterity<BR><B>Granted:</B> -5 Base
+Intelligence/ -5 Max Intelligence</P>
+</div> 
+
+<div id="blessing_div" class="xstooltip"><b>
+Blessed</b>
+<P><I>You carry the favor of one or more
+of the Gods: through their blessings, your flesh can better endure
+divine wrath and holy power.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Prohibited Race: </B>Vampire 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Holy Resistance: + 5 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="bloodofthedesert_div" class="xstooltip"><b>
+Blood of the Desert
+</b><P><I>You've got a dash of the
+desert-dwelling Irekei blood in your veins, burning hot within you.
+Because of this, you've inherited a little of their famed resistance
+to heat and fire.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Prohibited Race: </B>Vampire 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Fire Resistance: + 5 
+		</P>
+	</UL>
+</UL>
+</div> 
+
+<div id="bloodofthedragon_div" class="xstooltip"><b>
+Blood of the Dragon</b><br/>
+<P><I>The khar'ika, the sacred blood
+fire of the Dragon, burns in your veins. Kindled by the flames of the
+sun, it shall ward your flesh from lesser flames forevermore!</I>
+<BR><B>Creation Cost:</B> 8</P>
+<P><B>Required Race: </B>Irekei 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Fire Resistance: + 5 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="bloodofthenorth_div" class="xstooltip"><b>
+Blood of the North
+</b><P><I>The blood of the Northmen runs
+through your veins, making you resilient against frost and cold.</I>
+<BR><B>Creation Cost:</B> 4 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Cold Resistance: + 5 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="borninthecountry_div" class="xstooltip"><b>
+Born in the Country</b><br/>
+<P><I>Born to a family of humble
+peasants, you spent your youth defending your home with peasant's
+weapons. Staves may not be flashy, but a length of hickory can still
+split skulls!</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Prohibited Races: </B>Dwarf,
+Irekei<BR><B>Granted:</B> +5 to Staff skill</P>
+</div>
+
+<div id="bornoftheethyri_div" class="xstooltip"><b>
+Born of the Ethyri</b><br/>
+<P><I>The blood of ancient Ethyria runs
+in your veins. Blessed above all other Human kindred by the
+All-Father, you have inherited their renowned piety and resolve.</I>
+<BR><B>Creation Cost:</B> 10</P>
+<P><B>Rune Category:</B> Subrace<BR><B>Required Race: </B>Human<BR><B>Granted:</B>
+5 Base Spirit/ 10 Max Spirit 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Mana Recovery Rate: + 10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="bornofthegwendannen_div" class="xstooltip"><b>
+Born of the Gwendannen</b><br/>
+<P><I>The blood of the Gwendannen flows
+true in your veins. Like the Hill-men of old you are doughty and
+tough, as sturdy as stones and tough as deep tree roots.</I> <B>Creation
+Cost:</B> 10</P>
+<P><B>Rune Category:</B> Subrace<BR><B>Required Race: </B>Human<BR><B>Granted:</B>
+5 Base Con/ 10 Max Con 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Stamina Recovery Rate: + 10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="bornoftheinvorri_div" class="xstooltip"><b>
+Born of the Invorri</b><br/>
+<P><I>The blood of the Invorri,
+Torvald's folk, flows strongly in your veins, bringing with it the
+strength and toughness of your Northmen ancestors.</I> <B>Creation
+Cost:</B> 10</P>
+<P><B>Rune Category:</B> Subrace<BR><B>Required Race: </B>Human<BR><B>Granted:</B>
+5 Base Strength/ 10 Max Strength 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Health Recovery Rate: + 10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="bornoftheirydnu_div" class="xstooltip"><b>
+Born of the Irydnu</b><br/>
+<P><I>The blood of the Sage-kings of
+Irydnu flows in your veins. Dark-skinned lords of distant lands, the
+Irydnu are renowned for their intellects and mastery of the magical
+arts.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Rune Category:</B> Subrace<BR><B>Required Race: </B>Human<BR><B>Granted:</B>
+5 Base Intelligence/ 10 Max Intelligence 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Mana Recovery Rate: + 10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="bornofthetaripontor_div" class="xstooltip"><b>
+Born of the Taripontor</b><br/>
+<P><I>The blood of the Taripontor flows
+in your veins. The sailors and master-smiths of Tariponto have ever
+been renowned for their guile and skill, and you share their agility.</I>
+<BR><B>Creation Cost:</B> 10</P>
+<P><B>Rune Category:</B> Subrace<BR><B>Required Race: </B>Human<BR><B>Granted:</B>
+5 Base Dexterity/ 10 Max Dexterity 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Stamina Recovery Rate: + 10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="bowyerborn_div" class="xstooltip"><b>
+Bowyer Born</b><br/>
+<P><I>Life may be filled with troubles,
+but you've learned that a good crossbow can keep trouble at bay. A
+natural marksman,you're at your best when using a good crossbow.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Required Classes:</B>
+Fighter, Rogue<BR><B>Granted:</B> +5 to Crossbow skill</P>
+</div>
+
+<div id="brawler_div" class="xstooltip"><b>
+Brawler</b><br/>
+<P><I>&quot;You talking to me?&quot; is
+your motto. A scrapper from birth, you have been quick to throw
+punches, and as a result, you're better than most at the art of
+unarmed fighting and brawling.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Required Class:
+</B>Fighter<BR><B>Level 1:</B> granted skill <B>Unarmed Combat</B> (+
+10 point bonus) 
+</P>
+</div>
+
+<div id="brilliantmind_div" class="xstooltip"><b>
+Brilliant Mind</b><br/>
+<P><I>Adept at the utilization of
+reason, you possess far more intellect than any of the slack-witted
+cretins around you. Remind them of this often, but use small words so
+they'll understand.</I> <BR><B>Creation Cost:</B> 12</P>
+<P><B>Rune Category:</B> Intelligence<BR><B>Requires Intelligence of:</B>
+50<BR><B>Granted:</B> 10 Base Intelligence/ 10 Max Intelligence</P>
+</div>
+
+<div id="bruiser_div" class="xstooltip"><b>
+Bruiser</b><br/>
+<P><I>Perhaps you were a blacksmith in a
+previous life. Swinging a hammer comes naturally to you, and you
+learned long ago there is little in life that isn't fixed by a short,
+sharp shock.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> +5 to Hammer
+skill</P>
+</div>
+
+<div id="changeling_div" class="xstooltip"><b>
+Changeling</b><br/>
+<P><I>The mark of the Fey Folk is upon you: enchantment flows
+in your very blood, giving you some resistance to harmful spells.
+sharp shock.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> Magic Resistance: + 5 
+skill</P>
+</div>
+
+<div id="clever_div" class="xstooltip"><b>
+Clever</b><br/>
+<P><I>Clever and intuitive, you're a
+quick learner, able to deduce things rapidly with frequent success.
+Study and practice have always come easily, letting you master new
+skills quickly.</I> <BR><B>Creation Cost:</B> 6</P>
+<P><B>Rune Category:</B> Intelligence<BR><B>Requires Intelligence of:</B>
+40<BR><B>Granted:</B> 5 Base Intelligence/ 5 Max Intelligence</P>
+</div>
+
+<div id="darkwhispers_div" class="xstooltip"><b>
+Dark Whispers</b><br/>
+<P><I>You first heard the voices in your
+dreams, murmuring arcane verses. Some think they drove you mad, but
+you revel in the mystic secrets they imparted to you.</I> <B>Creation
+Cost:</B> 8</P>
+<P><B>Required Class: </B>Mage<BR><B>Granted:</B> +5 to Sorcery
+skill<BR><B>Granted:</B> +5 to Warding skill</P>
+</div>
+
+<div id="divinetouch_div" class="xstooltip"><b>
+Divine Touch</b><br/>
+<P><I>As a child you were touched by a
+powerful divine being. Your faith has shone like a beacon ever since,
+and the Healer's ways come naturally to you.</I> 
+</P>
+<P><BR><B>Creation Cost:</B> 8<BR><B>Required Class: </B>Healer<BR><B>Granted:</B>
++5 to Benediction skill<BR><B>Granted:</B> +5 to Restoration skill</P>
+</div>
+
+<div id="eyesoftheeagle_div" class="xstooltip"><b>
+Eyes of the Eagle</b><br/>
+<P><I>Because you have such keen eyes
+you were trained by a master archer. Your skill and accuracy with a
+bow attest to his skills.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Required Classes: </B>Fighter,
+Rogue<BR><B>Granted:</B> +5 to Bow skill</P>
+</div>
+
+<div id="faithoftheages_div" class="xstooltip"><b>
+Faith of Ages</b><br/>
+<P><I>You're clearly in touch with the
+supernatural powers and beings who inhabit the higher worlds. Thus,
+your capacity for magic is greater than normal.</I> <BR><B>Creation Cost:</B>
+12</P>
+<P><B>Rune Category:</B> Spirit<BR><B>Requires Spirit of:</B>
+50<BR><B>Granted:</B> 10 Base Spirit/ 10 Max Spirit</P>
+</div>
+
+<div id="fleetoffoot_div" class="xstooltip"><b>
+Fleet of Foot</b><br/>
+<P><I>You're quick on your feet, and
+have a physical gift that makes you a gifted sprinter, able to match
+a hare in a footrace.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Requires Dexterity of:</B> 50 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Movement Rate: + 5% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="giantsblood_div" class="xstooltip"><b>
+Giant's Blood</b><br/>
+<P><I>Though you don't have the height
+to show for it, you have the blood of giants in your veins, making
+you stronger than most, though your will is not as strong as it could
+be.</I> <BR><B>Creation Cost:</B> 14</P>
+<P><B>Requires Constitution of:</B> 40<BR><B>Requires Strength of:</B>
+50<BR><B>Required Races:</B> Aelfborn, Human, Shade<BR><B>Granted:</B>
+10 Base Strength/ 15 Max Strength<BR><B>Granted:</B> -5 Base
+Dexterity/ -10 Max Dexterity<BR><B>Granted:</B> 5 Base Con/ 10 Max
+Con<BR><B>Granted:</B> -5 Base Intelligence/ -10 Max Intelligence</P>
+</div>
+
+<div id="healthyasanox_div" class="xstooltip"><b>
+Healthy as an Ox</b><br/>
+<P><I>They've always said you're healthy
+as an ox, though you'd say that you're even healthier. You certainly
+feel like you could eat a whole ox!</I> <BR><B>Creation Cost:</B> 12</P>
+<P><B>Rune Category:</B> Constitution<BR><B>Requires Constitution of:</B>
+50<BR><B>Granted:</B> 10 Base Con/ 10 Max Con</P>
+</div>
+
+<div id="hearty_div" class="xstooltip"><b>
+Hearty</b><br/>
+<P><I>You're tough and resilient, and
+able to shrug off or ignore injury that might keep lesser folk in
+their sickbeds.</I> <BR><B>Creation Cost:</B> 6</P>
+<P><B>Rune Category:</B> Constitution<BR><B>Requires Constitution of:</B>
+40<BR><B>Granted:</B> 5 Base Con/ 5 Max Con</P>
+</div>
+
+<div id="herosstrength_div" class="xstooltip"><b>
+Hero's Strength</b><br/>
+<P><I>In you the heroes of ancient song
+have taken shape again: you're a veritable mountain of muscle, a
+paragon of might.</I> <BR><B>Creation Cost:</B> 12</P>
+<P><B>Rune Category:</B> Strength<BR><B>Requires Strength of:</B>
+50<BR><B>Granted:</B> 10 Base Strength/ 10 Max Strength</P>
+<P><BR>
+</P>
+</div>
+
+<div id="hunter_div" class="xstooltip"><b>
+Hunter</b><br/>
+<P><I>Since the
+birth of the world Kenaryn the Hunter has chased beasts through the
+wild. You've always followed in the Hunter God's footsteps, taking
+the spear as your favored weapon.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> +5 to Spear
+skill</P>
+</div>
+
+<div id="increasedconstitution_div" class="xstooltip"><b>
+Increased Constitution</b><br/>
+<P><I>You're tough, and have the potential
+to be tougher than leather. It will take a lot of practice and effort
+to get there, though.</I> <BR><B>Creation Cost:</B> 2</P>
+<P><B>Rune Category:</B> Increase Maximum Constitution<BR><B>Granted:</B>
+1 Base Con/ 3 Max Con</P>
+</div>
+
+<div id="increaseddexterity_div" class="xstooltip"><b>
+Increased Dexterity</b><br/>
+<P><I>Your potential for quick movement
+and great dexterity is notable, and with practice, you will move with
+the speed of a serpent.</I> <BR><B>Creation Cost:</B> 2</P>
+<P><B>Rune Category:</B> Increase Maximum Dexterity<BR><B>Granted:</B>
+1 Base Dexterity/ 3 Max Dexterity</P>
+</div>
+
+<div id="increasedintelligence_div" class="xstooltip"><b>
+Increased Intelligence</b><br/>
+<P><I>Your mind is like a razor, but it
+can be even sharper. You have magnificent intellectual potential, if
+you study and practice to achieve it.</I> <BR><B>Creation Cost:</B> 2</P>
+<P><B>Rune Category:</B> Increase Maximum Intelligence<BR><B>Granted:</B>
+1 Base Intelligence/ 3 Max Intelligence</P>
+</div>
+
+<div id="increasedspirit_div" class="xstooltip"><b>
+Increased Spirit</b><br/>
+<P><I>Your will is greater than most
+around you. If you work hard at focusing at your inner strength you
+can achieve the highest peak of spirituality.</I> <BR><B>Creation Cost:</B>
+2</P>
+<P><B>Rune Category:</B> Increase Maximum Spirit<BR><B>Granted:</B> 1
+Base Spirit/ 3 Max Spirit</P></div>
+
+<div id="increasedstrength_div" class="xstooltip"><b>
+Increased Strength</b><br/>
+<P><I>You have greater potential for
+mighty strength than others of your people. You must work hard and
+practice to achieve your glory, however.</I> <BR><B>Creation Cost:</B> 2</P>
+<P><B>Rune Category:</B> Increase Maximum Strength<BR><B>Granted:</B>
+1 Base Strength/ 3 Max Strength</P>
+</div>
+
+<div id="ironwill_div" class="xstooltip"><b>
+Iron Will</b><br/>
+<P><I>Your mind is strong, and you have
+some small ability to resist injury to your psyche.</I> <B>Creation
+Cost:</B> 4 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Mental Resistance: + 5 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="juggernaut_div" class="xstooltip"><b>
+Juggernaut</b><br/>
+<P><I>You've never been fleet of foot, but
+when the thrill of battle takes hold you become unstoppable,
+shrugging off blows and ignoring pain.</I> <BR><B>Creation Cost:</B> 8</P>
+<P><B>Required Races: </B>Dwarf, Half-Giant, Minotaur 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Crushing Resistance: + 5 
+		</P>
+		<LI><P>Piercing Resistance: + 5 
+		</P>
+		<LI><P>Slashing Resistance: + 5 
+		</P>
+		<LI><P>Movement Rate: -10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="knifefighter_div" class="xstooltip"><b>
+Knife-Fighter</b><br/>
+<P><I>&quot;Where'd you get that?&quot;
+you often hear when you drop into a knife-fighter stance and a
+razor-edged dagger slides from your sleeve. You're adept at using
+short blades, fast and sharp.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> +5 to Dagger
+skill</P>
+</div>
+
+<div id="knightssquire_div" class="xstooltip"><b>
+Knight's Squire</b><br/>
+<P><I>You spent a term serving an errant
+knight, lugging his armor and weapons around, jumping at every order.
+You learned a lot about armor, how to don it and wear it in battle.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Mentor<BR><B>Required Classes: </B>Fighter,
+Rogue<BR><B>Granted:</B> +5 to Medium Armor skill</P>
+<P><BR>
+</P>
+</div>
+
+<div id="lightningreflexes_div" class="xstooltip"><b>
+Lightning Reflexes</b><br/>
+<P><I>You're
+blessed with better hand-eye coordination than most, keen of eye and
+quick of hand. Maybe quicksilver runs in your veins.</I> <B>Creation
+Cost:</B> 12</P>
+<P><B>Rune Category:</B> Dexterity<BR><B>Requires Dexterity of:</B>
+50<BR><B>Granted:</B> 10 Base Dexterity/ 10 Max Dexterity</P>
+</div>
+
+<div id="lucky_div" class="xstooltip"><b>
+Lucky</b><br/>
+<P><I>If some Grobold archers fire four
+arrows at you and four friends, you'll be the one who doesn't get
+hit. &quot;Just lucky,&quot; you'll think as you run over to kill the
+little creeps. You're right.</I> <BR><B>Creation Cost:</B> 8 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Defense Bonus: + 5% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="mercenary_div" class="xstooltip"><b>
+Mercenary</b><br/>
+<P><I>No stranger to the battlefield, you
+spent some time roaming with a band of freebooters. They trained you
+well in the use of polearms, and you favor them to this day.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> +5 to Pole Arm
+skill</P>
+</div>
+
+<div id="mighty_div" class="xstooltip"><b>
+Mighty</b><br/>
+<P><I>Maybe you're not there yet, but in
+your sinews and muscles lies an untapped strength, Herculean in
+potential.</I> <BR><B>Creation Cost:</B> 6</P>
+<P><B>Rune Category:</B> Strength<BR><B>Requires Strength of:</B>
+40<BR><B>Granted:</B> 5 Base Strength/ 5 Max Strength</P>
+</div>
+
+<div id="militarytraining_div" class="xstooltip"><b>
+Military Training</b><br/>
+<P><I>You spent a long term conscripted
+into the local militia, and have basic training with light armor as a
+result.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Mentor<BR><B>Prohibited Class: </B>Mage<BR><B>Granted:</B>
++5 to Light Armor skill</P>
+</div>
+
+<div id="precise_div" class="xstooltip"><b>
+Precise</b><br/>
+<P><I>Everyone, it is said, has a talent:
+yours is for slaying. Truly fell-handed, you have a knack for putting
+point or edge exactly where you wish.</I> <BR><B>Creation Cost:</B> 8 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Attack Bonus: + 5% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="priestsacolyte_div" class="xstooltip"><b>
+Priest's Acolyte</b><br/>
+<P><I>A youth spent as the servant of a
+priest left you with greater spirit and more capacity to use
+supernatural Mana, but a little less nimble than you might have been.</I>
+<BR><B>Creation Cost:</B> 8</P>
+<P><B>Rune Category:</B> Apprentice<BR><B>Requires Spirit of:</B>
+40<BR><B>Granted:</B> -5 Base Strength/ -5 Max Strength<BR><B>Granted:</B>
+-5 Base Intelligence/ -5 Max Intelligence<BR><B>Granted:</B> 10 Base
+Spirit/ 10 Max Spirit</P>
+</div>
+
+<div id="proficientwithaxes_div" class="xstooltip"><b>
+Proficient with Axes</b><br/>
+<P><I>They said your devotion to this
+weapon was foolish, but you were adamant. After long and painful
+training, now you can wield what others of your class and rank
+cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Prohibited Class: </B>Fighter<BR><B>Level 1:</B> granted skill
+<B>Axe</B></P>
+</div>
+
+<div id="proficientwithbows_div" class="xstooltip"><b>
+Proficient with Bows</b><br/>
+<P><I>They said your devotion to this
+weapon was foolish, but you were adamant. After long and painful
+training, now you can wield what others of your class and rank
+cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Required Classes: </B>Fighter, Rogue<BR><B>Level 1:</B> granted
+skill <B>Bow</B></P>
+</div>
+
+<div id="proficientwithcrossbows_div" class="xstooltip"><b>
+Proficient with Crossbows</b><br/>
+<P><I>They said your devotion to this
+weapon was foolish, but you were adamant. After long and painful
+training, now you can wield what others of your class and rank
+cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Required Classes: </B>Fighter, Rogue<BR><B>Level 1:</B> granted
+skill <B>Crossbow</B></P>
+<P><BR>
+</P>
+</div>
+
+<div id="proficientwithdaggers_div" class="xstooltip"><b>
+Proficient with Daggers</b><br/>
+<P><I>They said
+your devotion to this weapon was foolish, but you were adamant. After
+long and painful training, now you can wield what others of your
+class and rank cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Required Class:</B> Healer<BR><B>Level 1:</B> granted skill
+<B>Dagger</B></P>
+</div>
+
+<div id="proficientwithhammers_div" class="xstooltip"><b>
+Proficient with Hammers</b><br/>
+<P><I>They said your devotion to this
+weapon was foolish, but you were adamant. After long and painful
+training, now you can wield what others of your class and rank
+cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Required Classes: </B>Mage, Rogue<BR><B>Level 1:</B> granted
+skill <B>Hammer</B></P>
+</div>
+
+<div id="proficientwithpolearms_div" class="xstooltip"><b>
+Proficient with Pole Arms</b><br/>
+<P><I>They said your devotion to this
+weapon was foolish, but you were adamant. After long and painful
+training, now you can wield what others of your class and rank
+cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Level 1:</B> granted skill <B>Pole Arm</B></P>
+</div>
+
+<div id="proficientwithspears_div" class="xstooltip"><b>
+Proficient with Spears</b><br/>
+<P><I>They said your devotion to this
+weapon was foolish, but you were adamant. After long and painful
+training, now you can wield what others of your class and rank
+cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Level 1:</B> granted skill <B>Spear</B></P>
+</div>
+
+<div id="proficientwithstaves_div" class="xstooltip"><b>
+Proficient with Staves</b><br/>
+<P><I>They said your devotion to this
+weapon was foolish, but you were adamant. After long and painful
+training, now you can wield what others of your class and rank
+cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Required Class: </B>Fighter<BR><B>Level 1:</B> granted skill
+<B>Staff</B></P>
+</div>
+
+<div id="proficientwithswords_div" class="xstooltip"><b>
+Proficient with Swords</b><br/>
+<P><I>They said your devotion to this
+weapon was foolish, but you were adamant. After long and painful
+training, now you can wield what others of your class and rank
+cannot.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Required Classes: </B>Healer, Mage<BR><B>Level 1:</B> granted
+skill <B>Sword</B></P>
+</div>
+
+<div id="raisedbybarbarians_div" class="xstooltip"><b>
+Raised by Barbarians</b><br/>
+<P><I>You spent your childhood in among a
+band of rugged Invorri barbarians. They taught you many things, but
+their love of axes stayed with you longest.</I> <BR><B>Creation Cost:</B>
+4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Prohibited Races: </B>Dwarf,
+Elf, Irekei, Minotaur<BR><B>Granted:</B> +5 to Axe skill</P>
+</div>
+
+<div id="raisedbycentaurs_div" class="xstooltip"><b>
+Raised by Centaurs</b><br/>
+<P><I>The mighty horselords of the plains
+fostered you in your early years, teaching you Law, Honor, and the
+way of the spear.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Prohibited Races: </B>Aracoix,
+Centaur, Elf, Minotaur<BR><B>Granted:</B> +5 to Spear skill</P>
+</div>
+
+<div id="raisedbydwarves_div" class="xstooltip"><b>
+Raised by Dwarves</b><br/>
+<P><I>Some might dismiss it as fairy-tale,
+but you spent your youth under the earth, raised by hardy Dwarves.
+Years of work in mine and forge left you with a knack for hammers.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Prohibited Races: </B>Dwarf,
+Elf<BR><B>Granted:</B> +5 to Hammer skill</P>
+</div>
+
+<div id="raisedbyelves_div" class="xstooltip"><b>
+Raised by Elves</b><br/>
+<P><I>Through some twist of fate you were
+raised in an Elven city. Living among them taught you their cruel
+ways, their wit, and their mastery of swords.</I> <BR><B>Creation Cost:</B>
+4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Prohibited Races: </B>Centaur,
+Dwarf, Elf, Irekei<BR><B>Granted:</B> +5 to Sword skill</P>
+</div>
+
+<div id="raisedbythievesguild_div" class="xstooltip"><b>
+Raised by Thieves' Guild</b><br/>
+<P><I>Deception, theft, and larceny were
+the curriculum in the secret halls of the Thieves' Guild. You quickly
+learned that a good dagger is the only thing you can truly trust.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Prohibited Race:
+</B>Dwarf<BR><B>Granted:</B> +5 to Dagger skill</P>
+<P><BR>
+</P>
+</div>
+
+<div id="raisedinthewoods_div" class="xstooltip"><b>
+Raised in the Woods</b><br/>
+<P><I>Whether
+Elves or Gwendannen, woodfolk have always hunted with bows. The time
+you spent in the forests has made archery second nature to you.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Required Classes: </B>Fighter,
+Rogue<BR><B>Prohibited Races: </B>Dwarf, Irekei<BR><B>Granted:</B> +5
+to Bow skill</P>
+</div>
+
+<div id="scionofdarkhelegeur_div" class="xstooltip"><b>
+Scion of Dar Khelegeur</b><br/>
+<P><I>Of the three Elven bloodlines, the
+blue-skinned High Ice Lords of the Dar Khelegur were the cruelest,
+and the most beloved of Saedron, goddess of magic. You are of that
+noble bloodline.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Rune Category:</B> Subrace<BR><B>Required Race:</B>
+Elf<BR><B>Granted:</B> 5 Base Intelligence/ 10 Max Intelligence 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Mana Recovery Rate: + 10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="scionofgwaridorn_div" class="xstooltip"><b>
+Scion of Gwaridorn</b><br/>
+<P><I>Of the three kindreds of the
+Firstborn, the green-skinned Sea Lords of the Gwaridorn were the
+strongest, masters of war and battle. You are of that storied
+bloodline, hardy in combat.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Rune Category:</B> Subrace<BR><B>Required Race: </B>Elf<BR><B>Granted:</B>
+5 Base Con/ 10 Max Con 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Health Recovery Rate: + 10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="scionoftwathedilion_div" class="xstooltip"><b>
+Scion of Twathedilion</b><br/>
+<P><I>Of the three nations of the Elves,
+the gold-skinned Twathedelion were the fairest, agile dwellers in the
+deep forest and masters of the bow. You are of that renowned
+bloodline.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Rune Category:</B> Subrace<BR><B>Required Race:</B>
+Elf<BR><B>Granted:</B> 5 Base Dexterity/ 10 Max Dexterity 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Stamina Recovery Rate: + 10% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="sellsword_div" class="xstooltip"><b>
+Sellsword</b><br/>
+<P><I>You've swung your sword for any
+who'd pay you. Maybe you believed in what you did, or it was just for
+love of gold. Now, you're better with a blade for it, and that's what
+matters.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> +5 to Sword
+skill</P>
+</div>
+
+<div id="sharpshooter_div" class="xstooltip"><b>
+Sharpshooter</b><br/>
+<P><I>You've always had an affinity for
+crossbows, taking to them as easily as any Dwarf. Keen eyes, steady
+hands, and shallow breath ensure you rarely miss.</I> <B>Creation
+Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> +5 to Crossbow
+skill</P>
+</div>
+
+<div id="shopkeepersapprentice_div" class="xstooltip"><b>
+Shopkeeper's Apprentice</b><br/>
+<P><I>Youth spent working in a tradesman's
+shop made you skilled in sweeping, stocking shelves, and dusting -
+fairly worthless skills, though you can haggle excellently.</I>
+<BR><B>Creation Cost:</B> 10</P>
+<P><B>Rune Category:</B> Mentor<BR><B>Requires Intelligence of:</B>
+50<BR><B>Level 1:</B> granted skill <B>Bargaining</B></P>
+</div>
+
+<div id="snakehandler_div" class="xstooltip"><b>
+Snake Handler</b><br/>
+<P><I>You have less fear of the adder's
+bite or the scorpion's sting than most: some virtue in your blood is
+proof against poison.</I> <BR><B>Creation Cost:</B> 4 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Poison Resistance: + 5 
+		</P>
+	</UL>
+</UL>
+<P><BR>
+</P>
+</div>
+
+<div id="soldtothepits_div" class="xstooltip"><b>
+Sold to the Pits</b><br/>
+<P><I>The
+Horwathi slavers used to throw you in a pit with wild dogs to fight
+for meat. Now that you're free, you've found you can still kill with
+your bare hands if need be.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Level 1:</B> granted skill
+<B>Unarmed Combat</B> (+ 10 point bonus)</P>
+</div>
+
+<div id="soldierborn_div" class="xstooltip"><b>
+Soldier Born</b><br/>
+<P><I>From the time you could carry one,
+you've shown an uncanny aptitude for polearms. Your knack with
+halberd and pike will doubtless serve you well in this age of war.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Childhood<BR><B>Granted:</B> +5 to Pole Arm
+skill</P>
+</div>
+
+<div id="stormborn_div" class="xstooltip"><b>
+Stormborn</b><br/>
+<P><I>A mighty storm raged during your
+birth, and you first opened your eyes to the flash of lightning. Ever
+since, skyfire has been loath to bite you.</I> <BR><B>Creation Cost:</B>
+4 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Lightning Resistance: + 5 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="taintofchaos_div" class="xstooltip"><b>
+Taint of Chaos</b><br/>
+<P><I>Born of demonic blood, your very
+flesh is imbued with the taint of Chaos: your body, mind and spirit
+are continually changing, allowing you to quickly recover from wounds
+and exertions.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Required Race: </B>Nephilim 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Health Recovery Rate: + 20% 
+		</P>
+		<LI><P>Mana Recovery Rate: + 20% 
+		</P>
+		<LI><P>Stamina Recovery Rate: + 20% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="taintofmadness_div" class="xstooltip"><b>
+Taint of Madness</b><br/>
+<P><I>Somewhere in the chaotic web of
+thoughts constantly burning in your brain, is a link to the divine,
+allowing you to draw more Mana to fuel your crazed spells and powers.</I>
+<BR><B>Creation Cost:</B> 10</P>
+<P><B>Requires Spirit of:</B> 50 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Max Mana: + 100 
+		</P>
+		<LI><P>Mana Recovery Rate: + 20% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="taughtbyblademaster_div" class="xstooltip"><b>
+Taught by Blademaster</b><br/>
+<P><I>You hated the ancient Blademaster at
+the time, and fled his training after the first lesson. You did learn
+that lesson well, however: a sword is as vital to defense as it is to
+attack.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Mentor<BR><B>Required Class:
+</B>Fighter<BR><B>Granted:</B> +5 to Parry skill</P>
+</div>
+
+<div id="taughtbymasterthief_div" class="xstooltip"><b>
+Taught by Master Thief</b><br/>
+<P><I>The old cutpurse taught you to
+quicken your hands and sharpen your reflexes. His training certainly
+made you nimbler, but you still bear the scars of his harshest
+lessons.</I> <BR><B>Creation Cost:</B> 8</P>
+<P><B>Rune Category:</B> Apprentice<BR><B>Requires Dexterity of:</B>
+40<BR><B>Granted:</B> -5 Base Strength/ -5 Max Strength<BR><B>Granted:</B>
+10 Base Dexterity/ 10 Max Dexterity<BR><B>Granted:</B> -5 Base Con/
+-5 Max Con</P>
+</div>
+
+<div id="tireless_div" class="xstooltip"><b>
+Tireless</b><br/>
+<P><I>With lungs like a bellows, you
+rarely get tired, and are able to run and exert yourself far longer
+than average folk can.</I> <BR><B>Creation Cost:</B> 10</P>
+<P><B>Requires Constitution of:</B> 50 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Stamina Recovery Rate: + 20% 
+		</P>
+		<LI><P>Max Stamina: + 30 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="toughasnails_div" class="xstooltip"><b>
+Tough as Nails</b><br/>
+<P><I>Not only
+are you tough as nails, you could probably eat a bucket of them for
+breakfast. You're able to withstand more injury than others.</I>
+<BR><B>Creation Cost:</B> 10</P>
+<P><B>Requires Constitution of:</B> 50 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Max Health: + 200 
+		</P>
+		<LI><P>Health Recovery Rate: + 20% 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="toughhide_div" class="xstooltip"><b>
+Tough Hide</b><br/>
+<P><I>With skin like tanned leather,
+you're fairly resistant to injury.</I> <BR><B>Creation Cost:</B> 12</P>
+<P><B>Prohibited Race:</B> Dwarf 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Crushing Resistance: + 5 
+		</P>
+		<LI><P>Piercing Resistance: + 5 
+		</P>
+		<LI><P>Slashing Resistance: + 5 
+		</P>
+	</UL>
+</UL>
+</div>
+
+<div id="trainedbymasterofarms_div" class="xstooltip"><b>
+Trained by Master-of-Arms</b><br/>
+<P><I>&quot;There's more to any victory
+than striking true,&quot; the Warrior taught you long ago. &quot;Even
+the best swing is useless if met with a shield.&quot; You took his
+lesson to heart.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Mentor<BR><B>Required Classes: </B>Fighter,
+Healer<BR><B>Granted:</B> +5 to Block skill</P> 
+</div>
+
+<div id="travellingperformer_div" class="xstooltip"><b>
+Traveling Performer</b><br/>
+<P><I>You spent your youth traveling with
+a troupe of acrobats. Though you no longer tumble for gold, the
+movements you learned can help keep you out of harm's way in combat.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Mentor<BR><B>Required Class: </B>Rogue<BR><B>Granted:</B>
++5 to Dodge skill</P>
+</div>
+
+<div id="truefaith_div" class="xstooltip"><b>
+True Faith</b><br/>
+<P><I>Unlike those who use reason or
+intellect, you rely on intuition, omens, and signs from the spirit
+world to guide you. Their voices are loud, and clear, and the signs
+are there for all to see.</I> <BR><B>Creation Cost:</B> 6</P>
+<P><B>Rune Category:</B> Spirit<BR><B>Requires Spirit of:</B>
+40<BR><B>Granted:</B> 5 Base Spirit/ 5 Max Spirit</P>
+</div>
+
+<div id="wanderer_div" class="xstooltip"><b>
+Wanderer</b><br/>
+<P><I>The horizon has always called you,
+and you've spent most of your life wandering, with a stout stick in
+your hand. In your hands, a walking stick can be a formidable weapon.</I>
+<BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> +5 to Staff
+skill</P>
+</div>
+
+<div id="warlordspage_div" class="xstooltip"><b>
+Warlord's Page</b><br/>
+<P><I>You may never know why you were
+spared, when that tyrant put your entire village to the sword. Long
+years of hard service to the Warlord toughened you, but now you've
+escaped!</I> <BR><B>Creation Cost:</B> 8</P>
+<P><B>Rune Category:</B> Apprentice<BR><B>Requires Constitution of:</B>
+40<BR><B>Granted:</B> -5 Base Dexterity/ -5 Max Dexterity<BR><B>Granted:</B>
+10 Base Con/ 10 Max Con<BR><B>Granted:</B> -5 Base Spirit/ -5 Max
+Spirit</P>
+</div>
+
+<div id="witchsight_div" class="xstooltip"><b>
+Witch Sight</b><br/>
+<P><I>Since childhood you have seen things
+nobody else can see. Though masterful stealth or powerful magic can
+still evade your gaze, your keen eyes see much that goes unseen.</I>
+<BR><B>Creation Cost:</B> 6</P>
+<P><B>Prohibited Race: </B>Shade 
+</P>
+<UL>
+	<LI><P><B>Applies Effect(s):</B> 
+	</P>
+	<UL>
+		<LI><P>Can See Invisible Monsters and players</P>
+	</UL>
+</UL>
+<P><B>Clarification:</B> Witch Sight grants a player the ability to
+see invisibility that is PR15 or below. 
+</P>
+</div>
+
+<div id="wizardsapprentice_div" class="xstooltip"><b>
+Wizard's Apprentice</b><br/>
+<P><I>The Magi of the Conclave came for
+you in childhood, and you spent thirteen years in strict tutelage.
+Your intellect has been carefully honed, and you are ready to test
+it.</I> <BR><B>Creation Cost:</B> 8</P>
+<P><B>Rune Category:</B> Apprentice<BR><B>Requires Intelligence of:</B>
+40<BR><B>Granted:</B> -5 Base Con/ -5 Max Con<BR><B>Granted:</B> 10
+Base Intelligence/ 10 Max Intelligence<BR><B>Granted:</B> -5 Base
+Spirit/ -5 Max Spirit</P>
+</div>
+
+<div id="woodsman_div" class="xstooltip"><b>
+Woodsman</b><br/>
+<P><I>Born in the timberlands, you've been
+chopping wood for as long as you could walk. The forests are
+perilous, but luckily an axe is as good for felling foes as it is
+felling trees.</I> <BR><B>Creation Cost:</B> 4</P>
+<P><B>Rune Category:</B> Background<BR><B>Granted:</B> +5 to Axe
+skill</P>
+</div><table id="mainContent">
+<tr>
+<td colspan=5>
+Select a Race-->Select a subclass-->Select Starting Character Traits-->Select a Class--><br>Select Level-->Select In-Game Runes
+<FORM name="drop_list">		
+	<SELECT size="1" id="race" onchange="selectsubclass(this.id);">
+		<option value="55">Select A Race</option>
+		<Option value="1">Aelfborn</option>
+		<Option value="2">Aracoix</option>
+		<option value="3">Centaur</option>
+		<option value="4">Dwarf</option>
+		<option value="5">Elf</option>
+		<option value="6">Half Giant</option>
+		<option value="7">Human</option>
+		<option value="8">Irekei</option>
+		<option value="9">Minotaur</option>
+		<option value="10">Nephilim</option>
+		<option value="11">Shade</option>
+		<option value="12">Vampire</option>
+	</SELECT>
+	<SELECT size="1" name="subclass" id="subclass" onchange="selectsubclass(this.id);">
+		<option value=55>Select A Subclass</option>
+	</SELECT>
+	<select size="1" name="profession" id="profession" onchange="selectsubclass(this.id);">
+		<option>Select A Class</option>
+	</select>
+	<select size="1" name="level" id="level" onchange="selectsubclass(this.id);">
+		<option>Select Level</option>	</select>
+</form>
+</td>
+<td class="center" colspan=4><b>Traits</b><br>
+</td>
+</tr>
+<tr>
+<td colspan=5 class="center"><b>Stats</b></td>
+<td rowspan=9 colspan=4 align=right valign="top">
+<table border=1 valign="top">
+<tr valign="top">
+<td valign="top"><ul id="tabs" style="margin-right:100px; margin-left:20px">
+		<div id="traitButtons">
+			<li><a href="#apprenticeTab">Apprentice</a></li><BR>
+			<li><a href="#backgroundTab">Background</a></li><BR>
+			<li><a href="#childhoodTab">Childhood</a></li><BR>
+			<li><a href="#constitutionTab">Constitution</a></li><BR>
+			<li><a href="#dexterityTab">Dexterity</a></li><BR>
+			<li><a href="#intelligenceTab">Intelligence</a></li><BR>
+			<li><a href="#mentorTab">Mentor</a></li><BR>
+			<li><a href="#miscTab">Misc</a></li><BR>
+			<li><a href="#spiritTab">Spirit</a></li><BR>
+			<li><a href="#strengthTab">Strength</a></li><BR>
+			<li><a href="#subraceTab">Subrace</a></li><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+		</div>
+		<div id="level75Buttons" class="tabContent hide">
+			<li><a href="#strength75Tab">Strength</a></li><BR>
+			<li><a href="#dexterity75Tab">Dexterity</a></li><BR>
+			<li><a href="#constitution75Tab">Constitution</a></li><BR>
+			<li><a href="#intelligence75Tab">Intelligence</a></li><BR>
+			<li><a href="#spirit75Tab">Spirit</a></li><BR>
+			<li><a href="#discipline75Tab">Disciplines</a></li><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+		</div>
+    </ul>
+	<form name="traitForm"><div id="traitTabs">
+    <div class="tabContent" id="apprenticeTab">
+      <h2>Apprentice</h2>
+      <div>
+		<input type=radio name=apprenticeTrait onclick="startingTraits(this.id);" id=blacksmithsapprentice
+		onmouseover="xstooltip_show('blacksmithsapprentice_div','blacksmithsapprentice',50,50);"
+		onmouseout="xstooltip_hide('blacksmithsapprentice_div');"> Blacksmith's Apprentice
+		<br>
+		<input type=radio name=apprenticeTrait onclick="startingTraits(this.id);" id=priestsacolyte
+		onmouseover="xstooltip_show('priestsacolyte_div','priestsacolyte',50,50);"
+		onmouseout="xstooltip_hide('priestsacolyte_div');"> Priest's Acolyte
+		<br>
+		<input type=radio name=apprenticeTrait onclick="startingTraits(this.id);" id=taughtbymasterthief
+		onmouseover="xstooltip_show('taughtbymasterthief_div','taughtbymasterthief',50,50);"
+		onmouseout="xstooltip_hide('taughtbymasterthief_div');"> Taught by Master Thief
+		<br>
+		<input type=radio name=apprenticeTrait onclick="startingTraits(this.id);" id=warlordspage
+		onmouseover="xstooltip_show('warlordspage_div','warlordspage',50,50);"
+		onmouseout="xstooltip_hide('warlordspage_div');"> Warlord's Page
+		<br>
+		<input type=radio name=apprenticeTrait onclick="startingTraits(this.id);" id=wizardsapprentice
+		onmouseover="xstooltip_show('wizardsapprentice_div','wizardsapprentice',50,50);"
+		onmouseout="xstooltip_hide('wizardsapprentice_div');"> Wizard's Apprentice
+		<br>
+      </div>
+    </div>
+    <div class="tabContent" id="backgroundTab">
+      <h2>Background</h2>
+      <div>
+        <input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=brawler
+		onmouseover="xstooltip_show('brawler_div','brawler',50,50);"
+		onmouseout="xstooltip_hide('brawler_div');"> Brawler
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=bruiser
+		onmouseover="xstooltip_show('bruiser_div','bruiser',50,50);"
+		onmouseout="xstooltip_hide('bruiser_div');"> Bruiser
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=eyesoftheeagle
+		onmouseover="xstooltip_show('eyesoftheeagle_div','eyesoftheeagle',50,50);"
+		onmouseout="xstooltip_hide('eyesoftheeagle_div');"> Eyes of the Eagle
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=hunter
+		onmouseover="xstooltip_show('hunter_div','hunter',50,50);"
+		onmouseout="xstooltip_hide('hunter_div');"> Hunter
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=knifefighter
+		onmouseover="xstooltip_show('knifefighter_div','knifefighter',50,50);"
+		onmouseout="xstooltip_hide('knifefighter_div');"> Knife-Fighter
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=mercenary
+		onmouseover="xstooltip_show('mercenary_div','mercenary',50,50);"
+		onmouseout="xstooltip_hide('mercenary_div');"> Mercenary
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=sellsword
+		onmouseover="xstooltip_show('sellsword_div','sellsword',50,50);"
+		onmouseout="xstooltip_hide('sellsword_div');"> Sellsword
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=sharpshooter
+		onmouseover="xstooltip_show('sharpshooter_div','sharpshooter',50,50);"
+		onmouseout="xstooltip_hide('sharpshooter_div');"> Sharpshooter
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=wanderer
+		onmouseover="xstooltip_show('wanderer_div','wanderer',50,50);"
+		onmouseout="xstooltip_hide('wanderer_div');"> Wanderer
+		<br>
+		<input type=radio name=backgroundTrait onclick="startingTraits(this.id);" id=woodsman
+		onmouseover="xstooltip_show('woodsman_div','woodsman',50,50);"
+		onmouseout="xstooltip_hide('woodsman_div');"> Woodsman
+      </div>
+    </div>
+    <div class="tabContent" id="childhoodTab">
+      <h2>Childhood</h2>
+      <div>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=borninthecountry
+		onmouseover="xstooltip_show('borninthecountry_div','borninthecountry',50,50);"
+		onmouseout="xstooltip_hide('borninthecountry_div');"> Born in the Country
+		<br>
+        <input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=bowyerborn
+		onmouseover="xstooltip_show('bowyerborn_div','bowyerborn',50,50);"
+		onmouseout="xstooltip_hide('bowyerborn_div');"> Bowyer Born
+		<br>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=raisedbybarbarians
+		onmouseover="xstooltip_show('raisedbybarbarians_div','raisedbybarbarians',50,50);"
+		onmouseout="xstooltip_hide('raisedbybarbarians_div');"> Raised by Barbarians
+		<br>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=raisedbycentaurs
+		onmouseover="xstooltip_show('raisedbycentaurs_div','raisedbycentaurs',50,50);"
+		onmouseout="xstooltip_hide('raisedbycentaurs_div');"> Raised by Centaurs
+		<br>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=raisedbydwarves
+		onmouseover="xstooltip_show('raisedbydwarves_div','raisedbydwarves',50,50);"
+		onmouseout="xstooltip_hide('raisedbydwarves_div');"> Raised by Dwarves
+		<br>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=raisedbyelves
+		onmouseover="xstooltip_show('raisedbyelves_div','raisedbyelves',50,50);"
+		onmouseout="xstooltip_hide('raisedbyelves_div');"> Raised by Elves
+		<br>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=raisedbythievesguild
+		onmouseover="xstooltip_show('raisedbythievesguild_div','raisedbythievesguild',50,50);"
+		onmouseout="xstooltip_hide('raisedbythievesguild_div');"> Raised by Thieves' Guild
+		<br>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=raisedinthewoods
+		onmouseover="xstooltip_show('raisedinthewoods_div','raisedinthewoods',50,50);"
+		onmouseout="xstooltip_hide('raisedinthewoods_div');"> Raised in the Woods
+		<br>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=soldtothepits
+		onmouseover="xstooltip_show('soldtothepits_div','soldtothepits',50,50);"
+		onmouseout="xstooltip_hide('soldtothepits_div');"> Sold to the Pits
+		<br>
+		<input type=radio name=childhoodTrait onclick="startingTraits(this.id);" id=soldierborn
+		onmouseover="xstooltip_show('soldierborn_div','soldierborn',50,50);"
+		onmouseout="xstooltip_hide('soldierborn_div');"> Soldier Born
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="constitutionTab">
+      <h2>Constitution</h2>
+      <div>
+		<input type=radio name=constitutionTrait onclick="startingTraits(this.id);" id=healthyasanox
+		onmouseover="xstooltip_show('healthyasanox_div','healthyasanox',50,50);"
+		onmouseout="xstooltip_hide('healthyasanox_div');"> Healthy as an Ox
+		<br>
+        <input type=radio name=constitutionTrait onclick="startingTraits(this.id);" id=hearty
+		onmouseover="xstooltip_show('hearty_div','hearty',50,50);"
+		onmouseout="xstooltip_hide('hearty_div');"> Hearty
+		<br>
+		<input type=checkbox name=increased onclick="startingTraits(this.id);" id=increasedconstitution
+		onmouseover="xstooltip_show('increasedconstitution_div','increasedconstitution',50,50);"
+		onmouseout="xstooltip_hide('increasedconstitution_div');"> Increased Constitution
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="dexterityTab">
+      <h2>Dexterity</h2>
+      <div>
+        <input type=radio name=dexterityTrait onclick="startingTraits(this.id);" id=agile
+		onmouseover="xstooltip_show('agile_div','agile',50,50);"
+		onmouseout="xstooltip_hide('agile_div');"> Agile
+		<br>
+		<input type=checkbox name=increased onclick="startingTraits(this.id);" id=increaseddexterity
+		onmouseover="xstooltip_show('increaseddexterity_div','increaseddexterity',50,50);"
+		onmouseout="xstooltip_hide('increaseddexterity_div');"> Increased Dexterity
+		<br>
+		<input type=radio name=dexterityTrait onclick="startingTraits(this.id);" id=lightningreflexes
+		onmouseover="xstooltip_show('lightningreflexes_div','lightningreflexes',50,50);"
+		onmouseout="xstooltip_hide('lightningreflexes_div');"> Lightning Reflexes
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="intelligenceTab">
+      <h2>Intelligence</h2>
+      <div>
+        <input type=radio name=intelligenceTrait onclick="startingTraits(this.id);" id=brilliantmind
+		onmouseover="xstooltip_show('brilliantmind_div','brilliantmind',50,50);"
+		onmouseout="xstooltip_hide('brilliantmind_div');"> Brilliant Mind
+		<br>
+		<input type=radio name=intelligenceTrait onclick="startingTraits(this.id);" id=clever
+		onmouseover="xstooltip_show('clever_div','clever',50,50);"
+		onmouseout="xstooltip_hide('clever_div');"> Clever
+		<br>
+		<input type=checkbox name=increased onclick="startingTraits(this.id);" id=increasedintelligence
+		onmouseover="xstooltip_show('increasedintelligence_div','increasedintelligence',50,50);"
+		onmouseout="xstooltip_hide('increasedintelligence_div');"> Increased Intelligence
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="mentorTab">
+      <h2>Mentor</h2>
+      <div>
+		<input type=radio name=mentorTrait onclick="startingTraits(this.id);" id=knightssquire
+		onmouseover="xstooltip_show('knightssquire_div','knightssquire',50,50);"
+		onmouseout="xstooltip_hide('knightssquire_div');"> Knight's Squire
+		<br>
+		<input type=radio name=mentorTrait onclick="startingTraits(this.id);" id=militarytraining
+		onmouseover="xstooltip_show('militarytraining_div','militarytraining',50,50);"
+		onmouseout="xstooltip_hide('militarytraining_div');"> Military Training
+		<br>
+		<input type=radio name=mentorTrait onclick="startingTraits(this.id);" id=shopkeepersapprentice
+		onmouseover="xstooltip_show('shopkeepersapprentice_div','shopkeepersapprentice',50,50);"
+		onmouseout="xstooltip_hide('shopkeepersapprentice_div');"> Shopkeeper's Apprentice
+		<br>
+		<input type=radio name=mentorTrait onclick="startingTraits(this.id);" id=taughtbyblademaster
+		onmouseover="xstooltip_show('taughtbyblademaster_div','taughtbyblademaster',50,50);"
+		onmouseout="xstooltip_hide('taughtbyblademaster_div');"> Taught by Blademaster
+		<br>
+		<input type=radio name=mentorTrait onclick="startingTraits(this.id);" id=trainedbymasterofarms
+		onmouseover="xstooltip_show('trainedbymasterofarms_div','trainedbymasterofarms',50,50);"
+		onmouseout="xstooltip_hide('trainedbymasterofarms_div');"> Trained by Master-of-Arms
+		<br>
+		<input type=radio name=mentorTrait onclick="startingTraits(this.id);" id=travellingperformer
+		onmouseover="xstooltip_show('travellingperformer_div','travellingperformer',50,50);"
+		onmouseout="xstooltip_hide('travellingperformer_div');"> Travelling Performer
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="miscTab">
+      <h2>Misc</h2>
+      <div style="float:left;">
+        <input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=ambidexterity
+		onmouseover="xstooltip_show('ambidexterity_div','ambidexterity',50,50);"
+		onmouseout="xstooltip_hide('ambidexterity_div');"> Ambidexterity
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=blessing
+		onmouseover="xstooltip_show('blessing_div','blessing',50,50);"
+		onmouseout="xstooltip_hide('blessing_div');"> Blessed
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=bloodofthedesert
+		onmouseover="xstooltip_show('bloodofthedesert_div','bloodofthedesert',50,50);"
+		onmouseout="xstooltip_hide('bloodofthedesert_div');"> Blood of the Desert
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=bloodofthedragon
+		onmouseover="xstooltip_show('bloodofthedragon_div','bloodofthedragon',50,50);"
+		onmouseout="xstooltip_hide('bloodofthedragon_div');"> Blood of the Dragon
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=bloodofthenorth
+		onmouseover="xstooltip_show('bloodofthenorth_div','bloodofthenorth',50,50);"
+		onmouseout="xstooltip_hide('bloodofthenorth_div');"> Blood of the North
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=changeling
+		onmouseover="xstooltip_show('changeling_div','changeling',50,50);"
+		onmouseout="xstooltip_hide('changeling_div');"> Changeling
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=darkwhispers
+		onmouseover="xstooltip_show('darkwhispers_div','darkwhispers',50,50);"
+		onmouseout="xstooltip_hide('darkwhispers_div');"> Dark Whispers
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=divinetouch
+		onmouseover="xstooltip_show('divinetouch_div','divinetouch',50,50);"
+		onmouseout="xstooltip_hide('divinetouch_div');"> Divine Touch
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=fleetoffoot
+		onmouseover="xstooltip_show('fleetoffoot_div','fleetoffoot',50,50);"
+		onmouseout="xstooltip_hide('fleetoffoot_div');"> Fleet of Foot
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=giantsblood
+		onmouseover="xstooltip_show('giantsblood_div','giantsblood',50,50);"
+		onmouseout="xstooltip_hide('giantsblood_div');"> Giant's Blood
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=ironwill
+		onmouseover="xstooltip_show('ironwill_div','ironwill',50,50);"
+		onmouseout="xstooltip_hide('ironwill_div');"> Iron Will
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=juggernaut
+		onmouseover="xstooltip_show('juggernaut_div','juggernaut',50,50);"
+		onmouseout="xstooltip_hide('juggernaut_div');"> Juggernaut
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=lucky
+		onmouseover="xstooltip_show('lucky_div','lucky',50,50);"
+		onmouseout="xstooltip_hide('lucky_div');"> Lucky
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=precise
+		onmouseover="xstooltip_show('precise_div','precise',50,50);"
+		onmouseout="xstooltip_hide('precise_div');"> Precise
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithaxes
+		onmouseover="xstooltip_show('proficientwithaxes_div','proficientwithaxes',50,50);"
+		onmouseout="xstooltip_hide('proficientwithaxes_div');"> Proficient with Axes
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithbows
+		onmouseover="xstooltip_show('proficientwithbows_div','proficientwithbows',50,50);"
+		onmouseout="xstooltip_hide('proficientwithbows_div');"> Proficient with Bows
+		<br>
+	</div>
+
+	<div style="float:right;">
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithcrossbows
+		onmouseover="xstooltip_show('proficientwithcrossbows_div','proficientwithcrossbows',50,50);"
+		onmouseout="xstooltip_hide('proficientwithcrossbows_div');"> Proficient with Crossbows
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithdaggers
+		onmouseover="xstooltip_show('proficientwithdaggers_div','proficientwithdaggers',50,50);"
+		onmouseout="xstooltip_hide('proficientwithdaggers_div');"> Proficient with Daggers
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithhammers
+		onmouseover="xstooltip_show('proficientwithhammers_div','proficientwithhammers',50,50);"
+		onmouseout="xstooltip_hide('proficientwithhammers_div');"> Proficient with Hammers
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithpolearms
+		onmouseover="xstooltip_show('proficientwithpolearms_div','proficientwithpolearms',50,50);"
+		onmouseout="xstooltip_hide('proficientwithpolearms_div');"> Proficient with Pole Arms
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithspears
+		onmouseover="xstooltip_show('proficientwithspears_div','proficientwithspears',50,50);"
+		onmouseout="xstooltip_hide('proficientwithspears_div');"> Proficient with Spears
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithstaves
+		onmouseover="xstooltip_show('proficientwithstaves_div','proficientwithstaves',50,50);"
+		onmouseout="xstooltip_hide('proficientwithstaves_div');"> Proficient with Staves
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=proficientwithswords
+		onmouseover="xstooltip_show('proficientwithswords_div','proficientwithswords',50,50);"
+		onmouseout="xstooltip_hide('proficientwithswords_div');"> Proficient with Swords
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=snakehandler
+		onmouseover="xstooltip_show('snakehandler_div','snakehandler',50,50);"
+		onmouseout="xstooltip_hide('snakehandler_div');"> Snake Handler
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=stormborn
+		onmouseover="xstooltip_show('stormborn_div','stormborn',50,50);"
+		onmouseout="xstooltip_hide('stormborn_div');"> Stormborn
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=taintofchaos
+		onmouseover="xstooltip_show('taintofchaos_div','taintofchaos',50,50);"
+		onmouseout="xstooltip_hide('taintofchaos_div');"> Taint of Chaos
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=taintofmadness
+		onmouseover="xstooltip_show('taintofmadness_div','taintofmadness',50,50);"
+		onmouseout="xstooltip_hide('taintofmadness_div');"> Taint of Madness
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=tireless
+		onmouseover="xstooltip_show('tireless_div','tireless',50,50);"
+		onmouseout="xstooltip_hide('tireless_div');"> Tireless
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=toughasnails
+		onmouseover="xstooltip_show('toughasnails_div','toughasnails',50,50);"
+		onmouseout="xstooltip_hide('toughasnails_div');"> Tough as Nails
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=toughhide
+		onmouseover="xstooltip_show('toughhide_div','toughhide',50,50);"
+		onmouseout="xstooltip_hide('toughhide_div');"> Tough Hide
+		<br>
+		<input type=checkbox name=miscTrait onclick="startingTraits(this.id);" id=witchsight
+		onmouseover="xstooltip_show('witchsight_div','witchsight',50,50);"
+		onmouseout="xstooltip_hide('witchsight_div');"> Witch Sight
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="spiritTab">
+      <h2>Spirit</h2>
+      <div>
+		<input type=radio name=spiritTrait onclick="startingTraits(this.id);" id=faithoftheages
+		onmouseover="xstooltip_show('faithoftheages_div','faithoftheages',50,50);"
+		onmouseout="xstooltip_hide('faithoftheages_div');"> Faith of the Ages
+		<br>
+		<input type=checkbox name=increased onclick="startingTraits(this.id);" id=increasedspirit
+		onmouseover="xstooltip_show('increasedspirit_div','increasedspirit',50,50);"
+		onmouseout="xstooltip_hide('increasedspirit_div');"> Increased Spirit
+		<br>
+		<input type=radio name=spiritTrait onclick="startingTraits(this.id);" id=truefaith
+		onmouseover="xstooltip_show('truefaith_div','truefaith',50,50);"
+		onmouseout="xstooltip_hide('truefaith_div');"> True Faith
+		<br>
+	  </div>
+    </div>
+    </div>
+	<div class="tabContent" id="strengthTab">
+      <h2>Strength</h2>
+      <div>
+		<input type=radio name=strengthTrait onclick="startingTraits(this.id);" id=herosstrength
+		onmouseover="xstooltip_show('herosstrength_div','herosstrength',50,50);"
+		onmouseout="xstooltip_hide('herosstrength_div');"> Hero's Strength
+		<br>
+		<input type=checkbox name=increased onclick="startingTraits(this.id);" id=increasedstrength
+		onmouseover="xstooltip_show('increasedstrength_div','increasedstrength',50,50);"
+		onmouseout="xstooltip_hide('increasedstrength_div');"> Increased Strength
+		<br>
+		<input type=radio name=strengthTrait onclick="startingTraits(this.id);" id=mighty
+		onmouseover="xstooltip_show('mighty_div','mighty',50,50);"
+		onmouseout="xstooltip_hide('mighty_div');"> Mighty
+		<br>
+	  </div>
+    </div>
+	<div class="tabContent" id="subraceTab">
+      <h2>Subrace</h2>
+      <div>
+		<input type=radio name=subraceTrait onclick="startingTraits(this.id);" id=bornoftheethyri
+		onmouseover="xstooltip_show('bornoftheethyri_div','bornoftheethyri',50,50);"
+		onmouseout="xstooltip_hide('bornoftheethyri_div');"> Born of the Ethyri
+		<br>
+		<input type=radio name=subraceTrait onclick="startingTraits(this.id);" id=bornofthegwendannen
+		onmouseover="xstooltip_show('bornofthegwendannen_div','bornofthegwendannen',50,50);"
+		onmouseout="xstooltip_hide('bornofthegwendannen_div');"> Born of the Gwendannen
+		<br>
+		<input type=radio name=subraceTrait onclick="startingTraits(this.id);" id=bornoftheinvorri
+		onmouseover="xstooltip_show('bornoftheinvorri_div','bornoftheinvorri',50,50);"
+		onmouseout="xstooltip_hide('bornoftheinvorri_div');"> Born of the Invorri
+		<br>
+		<input type=radio name=subraceTrait onclick="startingTraits(this.id);" id=bornoftheirydnu
+		onmouseover="xstooltip_show('bornoftheirydnu_div','bornoftheirydnu',50,50);"
+		onmouseout="xstooltip_hide('bornoftheirydnu_div');"> Born of the Irydnu
+		<br>
+		<input type=radio name=subraceTrait onclick="startingTraits(this.id);" id=bornofthetaripontor
+		onmouseover="xstooltip_show('bornofthetaripontor_div','bornofthetaripontor',50,50);"
+		onmouseout="xstooltip_hide('bornofthetaripontor_div');"> Born of the Taripontor
+		<br>
+		<input type=radio name=subraceTrait onclick="startingTraits(this.id);" id=scionofdarkhelegeur
+		onmouseover="xstooltip_show('scionofdarkhelegeur_div','scionofdarkhelegeur',50,50);"
+		onmouseout="xstooltip_hide('scionofdarkhelegeur_div');"> Scion of the Dar Khelegeur
+		<br>
+		<input type=radio name=subraceTrait onclick="startingTraits(this.id);" id=scionofgwaridorn
+		onmouseover="xstooltip_show('scionofgwaridorn_div','scionofgwaridorn',50,50);"
+		onmouseout="xstooltip_hide('scionofgwaridorn_div');"> Scion of Gwaridorn
+		<br>
+		<input type=radio name=subraceTrait onclick="startingTraits(this.id);" id=scionoftwathedilion
+		onmouseover="xstooltip_show('scionoftwathedilion_div','scionoftwathedilion',50,50);"
+		onmouseout="xstooltip_hide('scionoftwathedilion_div');"> Scion of the Twathedilion
+		<br>
+	  </div>
+    </div>
+	<div class="tabContent" id="strength75Tab">
+      <h2>Statistical Runes - Strength</h2>
+      <div>
+		<input type=radio name=strengthRunes onclick="addStatRune(this.id);" id=Strength0
+		onmouseover="xstooltip_show('enhanced_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('enhanced_div');">Enhanced Strength
+		<br>
+		<input type=radio name=strengthRunes onclick="addStatRune(this.id);" id=Strength1
+		onmouseover="xstooltip_show('exceptional_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('exceptional_div');">Exceptional Strength
+		<br>
+		<input type=radio name=strengthRunes onclick="addStatRune(this.id);" id=Strength2
+		onmouseover="xstooltip_show('amazing_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('amazing_div');">Amazing Strength
+		<br>
+		<input type=radio name=strengthRunes onclick="addStatRune(this.id);" id=Strength3
+		onmouseover="xstooltip_show('incredible_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('incredible_div');">Incredible Strength
+		<br>
+		<input type=radio name=strengthRunes onclick="addStatRune(this.id);" id=Strength4
+		onmouseover="xstooltip_show('great_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('great_div');">Great Strength
+		<br>
+		<input type=radio name=strengthRunes onclick="addStatRune(this.id);" id=Strength5
+		onmouseover="xstooltip_show('heroic_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('heroic_div');">Heroic Strength
+		<br>
+		<input type=radio name=strengthRunes onclick="addStatRune(this.id);" id=Strength6
+		onmouseover="xstooltip_show('legendary_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('legendary_div');">Legendary Strength
+		<br>
+		<input type=radio name=strengthRunes onclick="addStatRune(this.id);" id=Strength7
+		onmouseover="xstooltip_show('ofthegods_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('ofthegods_div');">Strength of the Gods
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="dexterity75Tab">
+      <h2>Statistical Runes - Dexterity</h2>
+      <div>
+		<input type=radio name=dexterityRunes onclick="addStatRune(this.id);" id=Dexterity0
+		onmouseover="xstooltip_show('enhanced_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('enhanced_div');">Enhanced Dexterity
+		<br>
+		<input type=radio name=dexterityRunes onclick="addStatRune(this.id);" id=Dexterity1
+		onmouseover="xstooltip_show('exceptional_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('exceptional_div');">Exceptional Dexterity
+		<br>
+		<input type=radio name=dexterityRunes onclick="addStatRune(this.id);" id=Dexterity2
+		onmouseover="xstooltip_show('amazing_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('amazing_div');">Amazing Dexterity
+		<br>
+		<input type=radio name=dexterityRunes onclick="addStatRune(this.id);" id=Dexterity3
+		onmouseover="xstooltip_show('incredible_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('incredible_div');">Incredible Dexterity
+		<br>
+		<input type=radio name=dexterityRunes onclick="addStatRune(this.id);" id=Dexterity4
+		onmouseover="xstooltip_show('great_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('great_div');">Great Dexterity
+		<br>
+		<input type=radio name=dexterityRunes onclick="addStatRune(this.id);" id=Dexterity5
+		onmouseover="xstooltip_show('heroic_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('heroic_div');">Heroic Dexterity
+		<br>
+		<input type=radio name=dexterityRunes onclick="addStatRune(this.id);" id=Dexterity6
+		onmouseover="xstooltip_show('legendary_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('legendary_div');">Legendary Dexterity
+		<br>
+		<input type=radio name=dexterityRunes onclick="addStatRune(this.id);" id=Dexterity7
+		onmouseover="xstooltip_show('ofthegods_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('ofthegods_div');">Dexterity of the Gods
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="constitution75Tab">
+      <h2>Statistical Runes - Constitution</h2>
+      <div>
+		<input type=radio name=constitutionRunes onclick="addStatRune(this.id);" id=Constitution0
+		onmouseover="xstooltip_show('enhanced_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('enhanced_div');">Enhanced Constitution
+		<br>
+		<input type=radio name=constitutionRunes onclick="addStatRune(this.id);" id=Constitution1
+		onmouseover="xstooltip_show('exceptional_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('exceptional_div');">Exceptional Constitution
+		<br>
+		<input type=radio name=constitutionRunes onclick="addStatRune(this.id);" id=Constitution2
+		onmouseover="xstooltip_show('amazing_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('amazing_div');">Amazing Constitution
+		<br>
+		<input type=radio name=constitutionRunes onclick="addStatRune(this.id);" id=Constitution3
+		onmouseover="xstooltip_show('incredible_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('incredible_div');">Incredible Constitution
+		<br>
+		<input type=radio name=constitutionRunes onclick="addStatRune(this.id);" id=Constitution4
+		onmouseover="xstooltip_show('great_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('great_div');">Great Constitution
+		<br>
+		<input type=radio name=constitutionRunes onclick="addStatRune(this.id);" id=Constitution5
+		onmouseover="xstooltip_show('heroic_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('heroic_div');">Heroic Constitution
+		<br>
+		<input type=radio name=constitutionRunes onclick="addStatRune(this.id);" id=Constitution6
+		onmouseover="xstooltip_show('legendary_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('legendary_div');">Legendary Constitution
+		<br>
+		<input type=radio name=constitutionRunes onclick="addStatRune(this.id);" id=Constitution7
+		onmouseover="xstooltip_show('ofthegods_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('ofthegods_div');">Constitution of the Gods
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="intelligence75Tab">
+      <h2>Statistical Runes - Intelligence</h2>
+      <div>
+		<input type=radio name=intelligenceRunes onclick="addStatRune(this.id);" id=Intelligence0
+		onmouseover="xstooltip_show('enhanced_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('enhanced_div');">Enhanced Intelligence
+		<br>
+		<input type=radio name=intelligenceRunes onclick="addStatRune(this.id);" id=Intelligence1
+		onmouseover="xstooltip_show('exceptional_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('exceptional_div');">Exceptional Intelligence
+		<br>
+		<input type=radio name=intelligenceRunes onclick="addStatRune(this.id);" id=Intelligence2
+		onmouseover="xstooltip_show('amazing_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('amazing_div');">Amazing Intelligence
+		<br>
+		<input type=radio name=intelligenceRunes onclick="addStatRune(this.id);" id=Intelligence3
+		onmouseover="xstooltip_show('incredible_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('incredible_div');">Incredible Intelligence
+		<br>
+		<input type=radio name=intelligenceRunes onclick="addStatRune(this.id);" id=Intelligence4
+		onmouseover="xstooltip_show('great_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('great_div');">Great Intelligence
+		<br>
+		<input type=radio name=intelligenceRunes onclick="addStatRune(this.id);" id=Intelligence5
+		onmouseover="xstooltip_show('heroic_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('heroic_div');">Heroic Intelligence
+		<br>
+		<input type=radio name=intelligenceRunes onclick="addStatRune(this.id);" id=Intelligence6
+		onmouseover="xstooltip_show('legendary_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('legendary_div');">Legendary Intelligence
+		<br>
+		<input type=radio name=intelligenceRunes onclick="addStatRune(this.id);" id=Intelligence7
+		onmouseover="xstooltip_show('ofthegods_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('ofthegods_div');">Intelligence of the Gods
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="spirit75Tab">
+      <h2>Statistical Runes - Spirit</h2>
+      <div>
+		<input type=radio name=spiritRunes onclick="addStatRune(this.id);" id=Spirit0
+		onmouseover="xstooltip_show('enhanced_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('enhanced_div');">Enhanced Spirit
+		<br>
+		<input type=radio name=spiritRunes onclick="addStatRune(this.id);" id=Spirit1
+		onmouseover="xstooltip_show('exceptional_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('exceptional_div');">Exceptional Spirit
+		<br>
+		<input type=radio name=spiritRunes onclick="addStatRune(this.id);" id=Spirit2
+		onmouseover="xstooltip_show('amazing_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('amazing_div');">Amazing Spirit
+		<br>
+		<input type=radio name=spiritRunes onclick="addStatRune(this.id);" id=Spirit3
+		onmouseover="xstooltip_show('incredible_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('incredible_div');">Incredible Spirit
+		<br>
+		<input type=radio name=spiritRunes onclick="addStatRune(this.id);" id=Spirit4
+		onmouseover="xstooltip_show('great_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('great_div');">Great Spirit
+		<br>
+		<input type=radio name=spiritRunes onclick="addStatRune(this.id);" id=Spirit5
+		onmouseover="xstooltip_show('heroic_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('heroic_div');">Heroic Spirit
+		<br>
+		<input type=radio name=spiritRunes onclick="addStatRune(this.id);" id=Spirit6
+		onmouseover="xstooltip_show('legendary_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('legendary_div');">Legendary Spirit
+		<br>
+		<input type=radio name=spiritRunes onclick="addStatRune(this.id);" id=Spirit7
+		onmouseover="xstooltip_show('ofthegods_div',this.id,50,50);"
+		onmouseout="xstooltip_hide('ofthegods_div');">Spirit of the Gods
+		<br>
+      </div>
+    </div>
+	<div class="tabContent" id="discipline75Tab">
+      <h2>Misc</h2>
+      <div style="float:left;">
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=animator
+		onmouseover=""
+		onmouseout=""> Animator
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=archer
+		onmouseover=""
+		onmouseout=""> Archer
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=archmage
+		onmouseover=""
+		onmouseout=""> Archmage
+		<br>
+		<input type=radio name=commandDisc onclick="disciplineAdd(this.id);" id=artillerist
+		onmouseover=""
+		onmouseout=""> Artillerist
+		<br>
+		<input type=radio name=commandDisc onclick="disciplineAdd(this.id);" id=battlemagus
+		onmouseover=""
+		onmouseout=""> Battle Magus
+		<br>
+		<input type=radio name=vampDisc onclick="disciplineAdd(this.id);" id=belgosch
+		onmouseover=""
+		onmouseout=""> Belgosch
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=berserker
+		onmouseover=""
+		onmouseout=""> Berserker
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=blackmask
+		onmouseover=""
+		onmouseout=""> Black Mask
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=blademaster
+		onmouseover=""
+		onmouseout=""> Blade Master
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=bladeweaver
+		onmouseover=""
+		onmouseout=""> Blade Weaver
+		<br>
+		<input type=radio name=minoDisc onclick="disciplineAdd(this.id);" id=bloodhorn
+		onmouseover=""
+		onmouseout=""> Blood Horn
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=bloodprophet
+		onmouseover=""
+		onmouseout=""> Blood Prophet
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=bountyhunter
+		onmouseover=""
+		onmouseout=""> Bounty Hunter
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=clanwarden
+		onmouseover=""
+		onmouseout=""> Clanwarden
+		<br>
+		<input type=radio name=commandDisc onclick="disciplineAdd(this.id);" id=commander
+		onmouseover=""
+		onmouseout=""> Commander
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=conjurer
+		onmouseover=""
+		onmouseout=""> Conjurer
+		<br>
+		<input type=radio name=knightDisc onclick="disciplineAdd(this.id);" id=darkknight
+		onmouseover=""
+		onmouseout=""> Dark Knight
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=darksworn
+		onmouseover=""
+		onmouseout=""> Darksworn
+		<br>
+		<input type=radio name=vampDisc onclick="disciplineAdd(this.id);" id=drannok
+		onmouseover=""
+		onmouseout=""> Drannok
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=enchanter
+		onmouseover=""
+		onmouseout=""> Enchanter
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=forgemaster
+		onmouseover=""
+		onmouseout=""> Forge Master
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=giantkiller
+		onmouseover=""
+		onmouseout=""> Giant Killer
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=gladiator
+		onmouseover=""
+		onmouseout=""> Gladiator
+		<br>
+		<input type=radio name=vampDisc onclick="disciplineAdd(this.id);" id=gorgoi
+		onmouseover=""
+		onmouseout=""> Gorgoi
+		<br>
+	</div>
+
+	<div style="float:right;">
+		<input type=radio name=wereDisc onclick="disciplineAdd(this.id);" id=huntsman
+		onmouseover=""
+		onmouseout=""> Huntsman
+		<br>
+		<input type=radio name=knightDisc onclick="disciplineAdd(this.id);" id=knight
+		onmouseover=""
+		onmouseout=""> Knight
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=prospector
+		onmouseover=""
+		onmouseout=""> Prospector
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=ratcatcher
+		onmouseover=""
+		onmouseout=""> Rat Catcher
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=runecaster
+		onmouseover=""
+		onmouseout=""> Rune Caster
+		<br>
+		<input type=radio name=commandDisc onclick="disciplineAdd(this.id);" id=saboteur
+		onmouseover=""
+		onmouseout=""> Saboteur
+		<br>
+		<input type=radio name=commandDisc onclick="disciplineAdd(this.id);" id=sanctifier
+		onmouseover=""
+		onmouseout=""> Sanctifier
+		<br>
+		<input type=radio name=commandDisc onclick="disciplineAdd(this.id);" id=sapper
+		onmouseover=""
+		onmouseout=""> Sapper
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=savant
+		onmouseover=""
+		onmouseout=""> Savant
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=shroudborne
+		onmouseover=""
+		onmouseout=""> Shroudborne
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=skydancer
+		onmouseover=""
+		onmouseout=""> Skydancer
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=stormlord
+		onmouseover=""
+		onmouseout=""> Storm Lord
+		<br>
+		<input type=radio name=vampDisc onclick="disciplineAdd(this.id);" id=strigoi
+		onmouseover=""
+		onmouseout=""> Strigoi
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=summoner
+		onmouseover=""
+		onmouseout=""> Summoner
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=sundancer
+		onmouseover=""
+		onmouseout=""> Sun Dancer
+		<br>
+		<input type=radio name=minoDisc onclick="disciplineAdd(this.id);" id=thrall
+		onmouseover=""
+		onmouseout=""> Thrall
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=traveller
+		onmouseover=""
+		onmouseout=""> Traveller
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=undeadhunter
+		onmouseover=""
+		onmouseout=""> Undead Hunter
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=valkyr
+		onmouseover=""
+		onmouseout=""> Valkyr
+		<br>
+		<input type=radio name=wereDisc onclick="disciplineAdd(this.id);" id=werebear
+		onmouseover=""
+		onmouseout=""> Werebear
+		<br>
+		<input type=radio name=wereDisc onclick="disciplineAdd(this.id);" id=wererat
+		onmouseover=""
+		onmouseout=""> Wererat
+		<br>
+		<input type=radio name=wereDisc onclick="disciplineAdd(this.id);" id=werewolf
+		onmouseover=""
+		onmouseout=""> Werewolf
+		<br>
+		<input type=checkbox name=discInput onclick="disciplineAdd(this.id);" id=wyrmslayer
+		onmouseover=""
+		onmouseout=""> Wyrmslayer
+		<br>
+      </div>
+    </div>
+	</form>
+</td>
+</tr>
+</table>
+<tr>
+<td><br></td><td align="center"><b>Minimum</td><td align="center"><b>Current</b></td><td align="center"><b>Maximum</b></td><td><br></td>
+</tr>
+<tr>
+	<td align="right"><b>Strength:</b></td>
+	<td align="center"><form name="MinStr"><input type="text" size="2" name="Strength" id="minStrength" readOnly></form></td>
+	<td align="center"><form name="Str"><input type="text" size="2" name="Strength" id="curStrength" readOnly></form></td>
+	<td align="center"><form name="MaxStr"><input type="text" size="2" name="Strength" id="maxStrength" readOnly></form></td>
+	<td><button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,1)" class="Strength">+</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,2)" class="Strength">Max</button><br>
+	<button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,-1)" class="Strength">-</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,-2)" class="Strength">Min</button></td>
+</tr>
+<tr>
+	<td align="right"><b>Dexterity:</b></td>
+	<td align="center"><form name="MinDex"><input type="text" size="2" name="Dexterity" id="minDexterity" readOnly></form></td>
+	<td align="center"><form name="Dex"><input type="text" size="2" name="Dexterity" id="curDexterity" readOnly></form></td>
+	<td align="center"><form name=MaxDex><input type="text" size="2" name="Dexterity" id="maxDexterity" readOnly></form></td>
+	<td><button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,1)" class="Dexterity">+</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,2)" class="Dexterity">Max</button><br>
+	<button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,-1)" class="Dexterity">-</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,-2)" class="Dexterity">Min</button></td>
+</tr>
+<tr>
+	<td align="right"><b>Constitution:</b></td>
+	<td align="center"><form name="MinCon"><input type="text" size="2" name="Constitution" id="minConstitution" readOnly></form></td>
+	<td align="center"><form name=Con><input type="text" size="2" name="Constitution" id="curConstitution" readOnly></form></td>
+	<td align="center"><form name="MaxCon"><input type="text" size="2" name="Constitution" id="maxConstitution" readOnly></form></td>
+	<td><button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,1)" class="Constitution">+</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,2)" class="Constitution">Max</button><br>
+	<button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,-1)" class="Constitution">-</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,-2)" class="Constitution">Min</button></td>
+</tr>
+<tr>
+	<td align="right"><b>Intelligence:</b></td>
+	<td align="center"><form name="MinInt"><input type="text" size="2" name="Intelligence" id="minIntelligence" readOnly></form></td>
+	<td align="center"><form name="Int"><input type="text" size="2" name="Intelligence" id="curIntelligence" readOnly></form></td>
+	<td align="center"><form name="MaxInt"><input type="text" size="2" name="Intelligence" id="maxIntelligence" readOnly></form></td>
+	<td><button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,1)" onmouseout="intCheckMax();" class="Intelligence">+</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,2)" class="Intelligence">Max</button><br>
+	<button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,-1)" onmouseout="intCheckMax();" class="Intelligence">-</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,-2)" class="Intelligence">Min</button></td>
+</tr>
+<tr>
+	<td align="right"><b>Spirit:</b></td>
+	<td align="center"><form name="MinSpi"><input type="text" size="2" name="Spirit" id="minSpirit" readOnly></form></td>
+	<td align="center"><form name="Spi"><input type="text" size="2" name="Spirit" id="curSpirit" readOnly></form></td>
+	<td align="center"><form name="MaxSpi"><input type="text" size="2" name="Spirit" id="maxSpirit" readOnly></form></td>
+	<td><button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,1)" class="Spirit">+</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,2)" class="Spirit">Max</button><br>
+	<button style="background:#1e1e1e; width:25px" onclick="statAdj(this.className,-1)" class="Spirit">-</button>
+	<button style="background:#1e1e1e; width:40px" onclick="statAdj(this.className,-2)" class="Spirit">Min</button></td>
+</tr>
+<tr>
+<td colspan=2 rowspan=2>
+<center>
+<form name=Points>
+<b>Stat Points Remaining: 
+<input type=textbox size=1 value=30 name=Remaining id="statPoints" readOnly></b></form>
+<br />
+<button type=button onClick="window.location.href=window.location.href" style="background:#1e1e1e;width:190px;height:30px">Reset Character</button>
+<br><br><br>
+<button disabled type=button id="printButton" onclick="submit();" style="background:#1e1e1e;width:190px;height:30px">Printable Version</button>
+<br>
+</center>
+<br>
+</td>
+<td colspan=3 rowspan=2>
+<center>
+<b>Applied Runes</b>
+<form name=runes>
+<select size=9 style="width:220px;" id=appliedrunes>	
+</select>
+<input type=button value="Remove Rune" style="width:220px;background-color:#1e1e1e" onclick=remove_rune()>
+</form></center>
+</td>
+</tr>
+<tr>
+</tr>
+<tr>
+	<td colspan=4 class="center"><b>Skills</b></td>
+	<td colspan=5 class="center"><b>Powers (<a href="javascript:;" id="addPowerLink" onclick="xstooltip_show('powers_div', this.id, 0, -150);">Add Power</a>)</b></td>
+</tr>
+<input type=hidden value="0" id="skill_percent-1">
+<input type=hidden value="0" id="powerrank-1">
+<input type=hidden value="0" id="powerbonus-1">
+<tr class="center" valign="top">
+	<td rowspan=5 colspan=4>
+		<form name=skill>
+			<table id="skillTable" border=1 style="width:420px;">
+				<tr class="center">
+					<td>Skill Name</td>
+					<td>Skill %</td>
+					<td>Trains</td>
+					<td>Bonus</td>
+				</tr>
+				<tr id="templateSkill" class="center">
+					<td><input type=text size=25 name=skillname0 id=skillname0 readonly></td>
+					<td><input type=text size=2 readOnly name=skill_percent0 id=skill_percent0> %</td>
+					<td><input type=text size=3 name=skilltrain0 id=skilltrain0 onclick="focusInc(this.id);" onkeyup="checkMax(this.id);"></td>
+					<td><input type="text" name="skillbonus0" id="skillbonus0" readonly value="" size=3>
+					<input type="hidden" name="skillmin0" id="skillmin0" value="">
+					<input type="hidden" name="skillid0" id="skillid0" value=""></td>
+				</tr>
+				<tr id="resetSkills">
+					<td colspan=4><button type=button style="background:#1e1e1e;width:410px" onclick="resetSkills();">Reset Skills</button></td>
+				</tr>
+			</table>
+		</form>
+	</td>
+</tr>
+<tr valign="top" align="center">
+	<td colspan=6 rowspan=5>
+<form name=power>
+<table border=1 cellpadding=4 id="powerTable">
+	<tr class="center">
+		<td>Power Name</td>
+		<td>Rank</td>
+		<td>Bonus</td>
+		<td>Clear</td>
+		<td>Power Name</td>
+		<td>Rank</td>
+		<td>Bonus</td>
+		<td>Clear</td>
+	</tr>
+	<tr id="templatePower"><b>
+		<td class="center"><input type=text title="" size=17 readonly id="powername0" name="powername0"></td>
+		<td class="center"><input type=text size=1 onkeyup="checkMax(this.id);" onclick="focusInc(this.id);" id="powerrank0" name="powerrank0"> / 
+		<input type="text" value="" size=1 readonly id="powermax0" name="powermax0"></td>
+		<td class="center"><input type=text size=1 readonly id="powerbonus0" name="powerbonus0"></td>
+		<td class="center"><button type="button" id="powerclear0"  onclick="clearPower(this.id);">&nbsp;</button></td>
+		<input type="hidden" id="powerid0" name="powerid0">
+		<td class="center"><input type=text title="" size=17 readonly id="powername1" name="powername1"></td>
+		<td class="center"><input type=text size=1 onkeyup="checkMax(this.id);" onclick="focusInc(this.id);" id="powerrank1" name="powerrank1"> / 
+		<input type="text" value="" size=1 readonly id="powermax1" name="powermax1"></td>
+		<td class="center"><input type=text size=1 readonly id="powerbonus1" name="powerbonus1"></td>
+		<td class="center"><button type="button" id="powerclear1" onclick="clearPower(this.id);">&nbsp;</button></td></b>
+		<input type="hidden" id="powerid1" name="powerid1">
+	</tr>
+
+	<tr>
+		<td  id="resetPowers" colspan=8><button type="button" style="background:#1e1e1e;width:685px" onclick="resetPowers()">Reset Powers</button></td>
+	</tr>
+</table>
+</form>
+</td>
+</tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr>
+<td colspan=9 class="center" bgcolor=#CD3333>
+<form name=training>
+<b>Training Points Remaining: </b>
+<input type=text size=3 readOnly name=point id="remTrains">
+
+</form>
+</td></tr>
+</table>		
+</center>
+</body>
+</html>
